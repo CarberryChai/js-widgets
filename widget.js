@@ -7,3 +7,14 @@ export function add(...args) {
 export function isFloatEqual(val1, val2, range = -52) {
     return Math.abs(val1 - val2) < Number.EPSILON * Math.pow(2, 52 + range)
 }
+
+// 嵌套数组展开为一维数组，用法:[...flatArr(arr)]
+export function* flatArr (arr){
+    if (Array.isArray(arr)) {
+        for (let i = 0, j = arr.length; i < j; i++) {
+            yield*  flatArr(arr[i]);
+        }
+    } else {
+        yield arr
+    }
+}
