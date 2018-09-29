@@ -20,20 +20,34 @@ export function* flatArr(arr) {
 }
 // 获取url的查询参数,就是?后面的一坨😜
 export const qs = name => {
-  const queryObj =
-    window.location.search.length > 0
-      ? window.location.search
-          .substring(1)
-          .split('&')
-          .reduce((total, cur) => {
-            const temp = cur.split('=');
-            total[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
-            return total;
-          }, {})
-      : {};
-  if (name && typeof name !== 'string') throw new Error('the argument must be string');
-  if (name) {
-    return queryObj[name];
+  let queryObj = {};
+  if (name && typeof name !== 'string')
+    throw new Error('the argument must be string');
+  // 原生构造函数URLSearchParams，有兼容性
+  if (URLSearchParams) {
+    const urlObj = new URLSearchParams(location.search);
+    if (name) {
+      return urlObj.get(name);
+    }
+    for (const item of urlObj.entries()) {
+      queryObj[item[0]] = item[1];
+    }
+    return queryObj;
+  } else {
+    queryObj =
+      window.location.search.length > 0
+        ? window.location.search
+            .substring(1)
+            .split('&')
+            .reduce((total, cur) => {
+              const temp = cur.split('=');
+              total[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+              return total;
+            }, {})
+        : {};
+    if (name) {
+      return queryObj[name];
+    }
+    return queryObj;
   }
-  return queryObj;
 };
