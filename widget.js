@@ -51,3 +51,16 @@ export const qs = name => {
     return queryObj;
   }
 };
+
+// 验证
+export function validate(value, type = 'require') {
+  if (type === 'require') {
+    return !!value
+  }
+  if (type === 'mobile') {
+    return /^1[34578]\d{9}$/.test(value)
+  }
+  if (type === 'email') {
+    return /^[a-zA-Z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(value);
+  }
+}
