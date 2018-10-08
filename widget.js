@@ -55,12 +55,46 @@ export const qs = name => {
 // 验证
 export function validate(value, type = 'require') {
   if (type === 'require') {
-    return !!value
+    return !!value;
   }
   if (type === 'mobile') {
-    return /^1[34578]\d{9}$/.test(value)
+    return /^1[34578]\d{9}$/.test(value);
   }
   if (type === 'email') {
-    return /^[a-zA-Z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(value);
+    return /^[a-zA-Z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(
+      value
+    );
   }
+}
+
+/**
+ * 分页函数
+ *
+ * @export
+ * @param {*} total 总页数
+ * @param {*} cur  当前页
+ * @param {*} around 当前页前后出现的元素个数，默认两个
+ */
+export function makePage(total, cur, around = 2) {
+  const baseCount = around * 2 + 1 + 2 + 2 + 2; // 元素总个数
+  const surplus = baseCount - 4; // 当省略号只有一个时。剩余元素的个数
+  const startPosition = 1 + 2 + around + 1; // 前面出现省略号的临界点
+  const endPosition = total - 2 - around - 1;
+  let result;
+  if (cur <= baseCount - 2) {
+    result = Array.from({ length: baseCount - 2 }, (item, i) => i + 1);
+  } else {
+    if (cur < startPosition) {
+      result = [
+        ...Array.from({ length: surplus }, (item, i) => i + 1),
+        '...',
+        total,
+      ];
+    } else if (cur > endPosition) {
+      result = [1, '...', ...Array.from({length:surplus}, (item,i) => total - surplus +i +1)]
+    } else{
+      result = [1, '...', ...Array.from({length: around * 2 +1}, (item,i) => cur - around + i),'...', total]
+    }
+  }
+  return result
 }
