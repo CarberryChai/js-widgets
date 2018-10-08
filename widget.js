@@ -91,10 +91,26 @@ export function makePage(total, cur, around = 2) {
         total,
       ];
     } else if (cur > endPosition) {
-      result = [1, '...', ...Array.from({length:surplus}, (item,i) => total - surplus +i +1)]
-    } else{
-      result = [1, '...', ...Array.from({length: around * 2 +1}, (item,i) => cur - around + i),'...', total]
+      result = [
+        1,
+        '...',
+        ...Array.from(
+          { length: surplus },
+          (item, i) => total - surplus + i + 1
+        ),
+      ];
+    } else {
+      result = [
+        1,
+        '...',
+        ...Array.from(
+          { length: around * 2 + 1 },
+          (item, i) => cur - around + i
+        ),
+        '...',
+        total,
+      ];
     }
   }
-  return result
+  return result;
 }

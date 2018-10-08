@@ -1,28 +1,28 @@
 class EventManager {
-	constructor() {
-		this.eventList = new Map()
-	}
+  constructor() {
+    this.eventList = new Map();
+  }
 
-	on(event, callback) {
-		if (this.eventList.has(event) || this.eventList.set(event, [])) {
-			this.eventList.get(event).push(callback)
-		}
-		return this
-	}
+  on(event, callback) {
+    if (this.eventList.has(event) || this.eventList.set(event, [])) {
+      this.eventList.get(event).push(callback);
+    }
+    return this;
+  }
 
-	emit(event, ...args) {
-		if (this.eventList.has(event) === false) {
-			return
-		}
-		this.eventList.get(event).forEach(cb => {
-			setTimeout(() => {
-				cb(...args)
-			}, 0)
-		})
-	}
+  emit(event, ...args) {
+    if (this.eventList.has(event) === false) {
+      return;
+    }
+    this.eventList.get(event).forEach(cb => {
+      setTimeout(() => {
+        cb(...args);
+      }, 0);
+    });
+  }
 
-	off(event = null) {
-		this.eventList.delete(event)
-	}
+  off(event = null) {
+    this.eventList.delete(event);
+  }
 }
-export default EventManager
+export default EventManager;
