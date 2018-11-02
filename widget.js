@@ -114,3 +114,8 @@ export function makePage(total, cur, around = 2) {
   }
   return result;
 }
+
+// 判断是否为普通对象
+export function isPlainObject(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]';
+}
