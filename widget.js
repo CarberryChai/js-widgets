@@ -8,16 +8,26 @@ export function isFloatEqual(val1, val2, range = -52) {
   return Math.abs(val1 - val2) < Number.EPSILON * Math.pow(2, 52 + range);
 }
 
-// 嵌套数组展开为一维数组，用法:[...flatArr(arr)]
-export function* flatArr(arr) {
-  if (Array.isArray(arr)) {
-    for (let i = 0, j = arr.length; i < j; i++) {
-      yield* flatArr(arr[i]);
+/**
+ *展平多维数组
+ *
+ * @export
+ * @param {Array} arr
+ * @param {Array} result
+ * @returns
+ */
+export function flatten(arr, result) {
+  !result && (result = []);
+  for (let i = 0, j = arr.length; i < j; i++) {
+    if (Array.isArray(arr[i])) {
+      flatten(arr[i], result);
+    } else {
+      result.push(arr[i]);
     }
-  } else {
-    yield arr;
   }
+  return result;
 }
+
 // 获取url的查询参数,就是?后面的一坨😜
 export const qs = name => {
   let queryObj = {};
