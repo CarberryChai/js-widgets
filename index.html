@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>tets</title>
+    <style>
+      .box {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 4px;
+        background-color: lightseagreen;
+      }
+      .box1 {
+        height: 10000px;
+        width: 1000px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="box1"></div>
+    <script>
+      function setProgress(selector) {
+        const wh = window.innerHeight;
+        const h = document.documentElement.scrollHeight;
+        const dh = h - wh;
+        window.addEventListener('scroll', function() {
+          requestAnimationFrame(() => {
+            const petcent = Math.max(0, Math.min(1, window.scrollY / dh));
+            document.querySelector(selector).style.width = petcent * 100 + '%';
+          });
+        });
+      }
+      setProgress('.box')
+    </script>
+  </body>
+</html>

@@ -129,3 +129,30 @@ export function makePage(total, cur, around = 2) {
 export function isPlainObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }
+/**
+ *滚动进度条实现函数
+ *
+ * @export
+ * @param {String} selector css选择器
+ * usage:
+ *  <div class='progress'></div>
+ *  .progress {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 4px;
+        background-color: lightseagreen;
+      }
+     setProgress('.progress)
+ */
+export function setProgress(selector) {
+  const wh = window.innerHeight;
+  const h = document.documentElement.scrollHeight;
+  const dh = h - wh;
+  window.addEventListener('scroll', function() {
+    requestAnimationFrame(() => {
+      const petcent = Math.max(0, Math.min(1, window.scrollY / dh));
+      document.querySelector(selector).style.width = petcent * 100 + '%';
+    });
+  });
+}
