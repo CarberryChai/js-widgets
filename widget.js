@@ -162,3 +162,14 @@ export const deduplicate = arr =>
     (total, cur) => (total.includes(cur) ? total : [...total, cur]),
     []
   )
+
+/**
+ *判断是否为基数
+ *
+ * @param {Number} i
+ * @returns {Booblen}
+ */
+export const isOdd = i => {
+  if (!Number.isInteger(i)) throw new TypeError(`${i} is not a integer`)
+  return (i & 1) === 1
+}
