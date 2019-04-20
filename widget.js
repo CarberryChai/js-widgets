@@ -173,3 +173,10 @@ export const isOdd = i => {
   if (!Number.isInteger(i)) throw new TypeError(`${i} is not a integer`)
   return (i & 1) === 1
 }
+// 数字的千位分隔符表示法
+export function formatMoney(money) {
+  money = String(money)
+  const reg = /(?!^)(?=(\d{3})+$)/g
+  const result = money.replace(reg, ',')
+  return result
+}
