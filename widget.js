@@ -180,3 +180,12 @@ export function formatMoney(money) {
   const result = money.replace(reg, ',')
   return result
 }
+
+// 快速生成英文26个字母，可以用在通讯录导航条
+// (26) ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+export const upperLetter = Array.from({ length: 26 }, (_, index) =>
+  String.fromCodePoint(65 + index)
+)
+export const lowerLetter = Array.from({ length: 26 }, (_, index) =>
+  String.fromCodePoint(97 + index)
+)
