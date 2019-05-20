@@ -189,3 +189,23 @@ export const upperLetter = Array.from({ length: 26 }, (_, index) =>
 export const lowerLetter = Array.from({ length: 26 }, (_, index) =>
   String.fromCodePoint(97 + index)
 )
+
+/**
+ *查找集合中某个元素出现的次数
+ *
+ * @export
+ * @param {*} collections 具有迭代器接口的集合，eg:数组，字符串，set, map
+ * @param {*} item 给定元素
+ * @returns
+ */
+export function countItem(collections, item) {
+  const map = new Map()
+  for (const i of collections) {
+    if (map.has(i)) {
+      map.set(i, map.get(i) + 1)
+    } else {
+      map.set(i, 1)
+    }
+  }
+  return map.get(item)
+}
