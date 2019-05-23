@@ -194,7 +194,7 @@ export const lowerLetter = Array.from({ length: 26 }, (_, index) =>
  *查找集合中某个元素出现的次数
  *
  * @export
- * @param {*} collections 具有迭代器接口的集合，eg:数组，字符串，set, map
+ * @param {*} collections 具有迭代器接口的集合，eg:数组，字符串
  * @param {*} item 给定元素
  * @returns
  */
@@ -208,4 +208,13 @@ export function countItem(collections, item) {
     }
   }
   return map.get(item)
+}
+
+// 简单的去抖函数
+export function debounce(fn, wait = 200) {
+  let timer = null
+  return function() {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(fn.bind(this, ...arguments), wait)
+  }
 }
