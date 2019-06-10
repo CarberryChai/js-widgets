@@ -218,3 +218,15 @@ export function debounce(fn, wait = 200) {
     timer = setTimeout(fn.bind(this, ...arguments), wait)
   }
 }
+// 斐波那契数列
+function fibonacci(n) {
+  if (!Number.isInteger(n) || n <= 0) {
+    throw new TypeError(`The ${n} should be postive integer`)
+    return
+  }
+  let [x, y] = [1, 1]
+  while (--n) {
+    [x, y] = [y, x + y]
+  }
+  return y
+}
