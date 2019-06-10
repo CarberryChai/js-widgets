@@ -222,7 +222,6 @@ export function debounce(fn, wait = 200) {
 function fibonacci(n) {
   if (!Number.isInteger(n) || n <= 0) {
     throw new TypeError(`The ${n} should be postive integer`)
-    return
   }
   let [x, y] = [1, 1]
   while (--n) {
