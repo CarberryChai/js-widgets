@@ -219,7 +219,7 @@ export function debounce(fn, wait = 200) {
   }
 }
 // 斐波那契数列
-function fibonacci(n) {
+export function fibonacci(n) {
   if (!Number.isInteger(n) || n <= 0) {
     throw new TypeError(`The ${n} should be postive integer`)
   }
