@@ -225,7 +225,7 @@ export function fibonacci(n) {
   }
   let [x, y] = [1, 1]
   while (--n) {
-    [x, y] = [y, x + y]
+    ;[x, y] = [y, x + y]
   }
   return y
 }
