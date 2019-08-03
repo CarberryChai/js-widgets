@@ -119,12 +119,7 @@ class LinkedList {
 }
 
 const ll = new LinkedList()
-ll.push(3)
-ll.unshift(2)
-ll.unshift(1)
-ll.insert(5, 1)
-console.log(ll.print())
-console.log('***********')
-console.log(ll.delete(2))
-console.log('*********')
-console.log(ll.print())
+;['A', 'B', 'C'].forEach(item => {
+  ll.push(item)
+})
+ll.print()
