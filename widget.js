@@ -229,3 +229,10 @@ export function fibonacci(n) {
   }
   return y
 }
+// Number数组的最大值
+/* function getMAx(arr) {
+  return Math.max(...arr)
+} */
+export function getMAx(arr) {
+  return arr.reduce((t, c) => (t > c ? t : c))
+}
