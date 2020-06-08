@@ -149,7 +149,7 @@ export function setProgress(selector) {
   const wh = window.innerHeight
   const h = document.documentElement.scrollHeight
   const dh = h - wh
-  window.addEventListener('scroll', function() {
+  window.addEventListener('scroll', function () {
     requestAnimationFrame(() => {
       const petcent = Math.max(0, Math.min(1, window.scrollY / dh))
       document.querySelector(selector).style.width = petcent * 100 + '%'
@@ -213,7 +213,7 @@ export function countItem(collections, item) {
 // 简单的去抖函数
 export function debounce(fn, wait = 200) {
   let timer = null
-  return function() {
+  return function () {
     if (timer) clearTimeout(timer)
     timer = setTimeout(fn.bind(this, ...arguments), wait)
   }
@@ -235,4 +235,17 @@ export function fibonacci(n) {
 } */
 export function getMAx(arr) {
   return arr.reduce((t, c) => (t > c ? t : c))
+}
+
+// 判断一个数是不是正整数
+export function isPositiveNum(num) {
+  if (typeof num != 'number')
+    throw new TypeError(`The ${num} should be integer`)
+  return Number.isInteger(num) && num > 0
+}
+// 判断一个数是不是负整数
+export function isPositiveNum(num) {
+  if (typeof num != 'number')
+    throw new TypeError(`The ${num} should be integer`)
+  return Number.isInteger(num) && num < 0
 }
