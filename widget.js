@@ -249,3 +249,13 @@ export function isPositiveNum(num) {
     throw new TypeError(`The ${num} should be integer`)
   return Number.isInteger(num) && num < 0
 }
+
+//sleep函数, 默认睡😪一秒
+/* 用法 sleep().then(() => {
+  // your code
+}) */
+export function sleep(time = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time)
+  })
+}
