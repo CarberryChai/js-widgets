@@ -259,3 +259,15 @@ export function sleep(time = 1000) {
     setTimeout(resolve, time)
   })
 }
+
+// 求一个数的阶乘
+export function factorial(n) {
+  if (!(Number.isInteger(n) && n > 0)) {
+    throw TypeError(`${n} must be postive integer`)
+  }
+  let result = 1
+  while (n > 1) {
+    result *= n--
+  }
+  return result
+}
